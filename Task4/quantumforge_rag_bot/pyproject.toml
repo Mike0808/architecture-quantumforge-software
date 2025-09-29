@@ -1,0 +1,40 @@
+[project]
+name = "quantumforge-rag-bot"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Your Name",email = "you@example.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+]
+
+[[tool.poetry.source]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cpu"
+priority = "supplemental"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"
+
+# CPU-only PyTorch wheel for macOS Intel
+# torch = { url = "https://download.pytorch.org/whl/cpu/torch-2.2.2-cp311-none-macosx_10_9_x86_64.whl" }
+
+# Core dependencies
+sentence-transformers = "^2.2.2"
+langchain = "^0.3.27"
+qdrant-client = "^1.12.1"
+loguru = "^0.7.2"
+numpy = "^1.26"
+python-telegram-bot = "^20.8"
+openai = "^1.12.0"
+tiktoken = "^0.5.2"
+torch = { version = "2.2.2+cpu", extras = ["cpu"] }
+
+[tool.poetry]
+packages = [{include = "quantumforge_rag_bot", from = "src"}]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

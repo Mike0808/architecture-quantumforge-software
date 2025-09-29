@@ -1,0 +1,15 @@
+.venv*/
+.vscode/
+backup/
+__pycache__/
+*.pyc
+logs/
+cache_chunks*/
+.DS_Store
+json/
+original/
+phrase_folder/
+Task2/knowledge_base/
+qdrant_storage/
+*.snapshot
+company_docs_bot_openai.py

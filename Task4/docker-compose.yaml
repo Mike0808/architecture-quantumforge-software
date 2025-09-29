@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.9.0
+    container_name: qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - ../Task3/qdrant_snapshots:/qdrant/snapshots:rw
+      - qdrant_data:/qdrant/storage
+    environment:
+      QDRANT__STORAGE__SNAPSHOTS_PATH: "/qdrant/snapshots"
+    restart: unless-stopped
+
+  quantumforge_bot:
+    build: ./quantumforge_rag_bot
+    container_name: company_bot
+    depends_on:
+      - qdrant
+    environment:
+      TELEGRAM_TOKEN: ${TELEGRAM_TOKEN}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      QDRANT_HOST: qdrant
+      QDRANT_PORT: 6333
+    restart: unless-stopped
+
+volumes:
+  qdrant_data:
